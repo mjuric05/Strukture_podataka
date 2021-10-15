@@ -116,7 +116,7 @@ void ispisNaEkran(char*nazivDatoteke,int brojSutdenata)
     for(i=0;i<brojSutdenata;i++)
     {
         printf("Rezultati:\n");
-        printf("Ime: %s Prezime: %s Bodovi(apsloutni): %lf Bodovi(relativni): %lf",s[i].ime,s[i].prezime,s[i].bodovi,s[i].bodovi/max);
+        printf("Ime: %s Prezime: %s Bodovi(apsloutni): %lf Bodovi(relativni): %lf\n",s[i].ime,s[i].prezime,s[i].bodovi,s[i].bodovi/max);
     }
     
     fclose(dat);
