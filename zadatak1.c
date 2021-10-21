@@ -12,15 +12,19 @@ typedef struct _student
     double bodovi;
 }student;
 
-int procitajBrojRedakaIzDatoteke(char* nazivDatoteke);
-student* alocirajMemoriju(int brojSutdenata,char* nazivDatoteke);
-void ispisNaEkran(char*nazivDatoteke,int brojSutdenata);
+int procitajBrojRedakaIzDatoteke(char* nazivDatoteke);          //funkcija vraca broj redaka tj. studenata
+student* alocirajMemoriju(int brojSutdenata,char* nazivDatoteke);   //funkcija koja ce sa brojem studenata zauzeti potrebnu memoriju
+void ispisNaEkran(char*nazivDatoteke,int brojSutdenata);        //funkcija za ispis studenata na standardni izlaz tj. ekran            
 
 int main()
 {
     int i=0,brRedaka=0;
     FILE* dat=NULL;
     student* s;
+    char* nazivDatoteke = NULL;
+    
+    printf("Unesite ime datoteke:\n");
+    scanmf(" %s",&nazivDatoteke);
     
     dat=fopen(nazivDatoteke,"r");
     
