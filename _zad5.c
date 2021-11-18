@@ -10,13 +10,13 @@ struct _Stog;
 typedef struct _Stog* Position;
 typedef struct _Stog {
 
-	int Number;
+	double Number;
 	Position Next;
 }Stog;
 
 Position CreateStackElement(double number);
 int Push(Position S, double number);
-int Pop(Position S, char* operator);
+int Pop(Position S, double* operator);
 int InsertAfter(Position position, Position newElement);
 int DeleteAfter(Position position);
 int DeleteAllElements(Position S);
@@ -40,7 +40,7 @@ int main() {
 
 	ReadFileName(fileName,P);
 
-	printf("%.2lf",P->Next->Number);
+	printf("%.2lf\n",P->Next->Number);
 
 	return 0;
 }
@@ -80,7 +80,7 @@ int Push(Position head, double number) {
 	return 0;
 }
 
-int Pop(Position S, char* operator)
+int Pop(Position S, double* operator)
 {
 	if (S->Next == NULL)
 	{
@@ -161,7 +161,7 @@ int PrintStack(Position S) {
 
 		S = S->Next;
 
-		printf("%d\n", S->Number);
+		printf("%.2lf\n", S->Number);
 	}
 
 	return EXIT_SUCCESS;
@@ -224,11 +224,11 @@ int CalculateResultOfPostfix(Position S, char operator) {
 	double operator2 = 0;
 	int status = 0;
 
-	status = Pop(&operator1, S);
+	status = Pop(S,&operator1);
 	if (status != 0)
 		return -1;
 
-	status = Pop(&operator2, S);
+	status = Pop(S,&operator2);
 	if (status != 0)
 		return -1;
 
