@@ -16,9 +16,10 @@ int Menu(int numb, Position S);                                 //Jednostavni me
 Position CreateEmpty(Position S);                               //Kreira na pocetku jednostavno prazno stablo
 Position FindElement(int keyVal, Position S);                   //Funkcija za trazenje elemenata
 Position AddElementIntoTree(int X, Position S);                 //Dodaje element u stablo
-int PrintIrorder(Position S);                                   //Inorder ispis			//sto se tice ispisa, nisam znao kako napraviti level order ispis
+int PrintIrorder(Position S);                                   //Inorder ispis			
 int PrintPostorder(Position S);                                 //Postorder ispis
 int PrintPreorder(Position S);                                  //Preorder ispis
+int printLevelOrder(Position S);				//Njega nisam znao napraviti
 Position DeleteElement(int X, Position S);                      //Brise elemant iz stabla
 Position FindMin(Position S);                                   //Trazi minimum
 int AddRootElement(int X, Position S);                          //Dodaje "korjen" stabla
