@@ -51,18 +51,16 @@ int Menu(int numb, Position S) {
 
     temp = (Position)malloc(sizeof(Stablo));
 
-    printf("Pozdrav!\n\n");
-
     while (key != 0) {
 
         printf("Menu:\n");
-        printf("1-Ispis\n2-Pretrazivanje\n3-Unos novog elemanta\n4-Brisanje\n0-Izlaz\n");
+        printf("1-Ispis\n2-Pretrazivanje\n3-Unos novog elemanta\n4-Brisanje\n0-Izlaz\n\n");
         scanf("%d",&key);
 
         if(key == 1) {
 
             printf("Kakav ispis zelite?\n");
-            printf("1-Inorder\n2-Postorder\n3-Preorder\n");
+            printf("1-Inorder\n2-Postorder\n3-Preorder\n\n");
             scanf("%d",&key);
 
             if(key == 1) {
@@ -83,7 +81,7 @@ int Menu(int numb, Position S) {
             }
                 
             else 
-                printf("Netocan unos!\n");
+                printf("Netocan unos!\n\n");
         
         }
 
@@ -95,10 +93,10 @@ int Menu(int numb, Position S) {
            temp = FindElement(X,S);
 
            if(temp == NULL)
-                printf("Element ne postoji u stablu!\n");
+                printf("Element ne postoji u stablu!\n\n");
 
             else
-                printf("Element %d postoji u stablu!\n",temp->Number);          
+                printf("Element %d postoji u stablu!\n\n",temp->Number);          
         }
 
         else if(key == 3) {
@@ -110,14 +108,14 @@ int Menu(int numb, Position S) {
 
             if(temp != NULL) {
 
-                printf("Element vec postoji!\n");
+                printf("Element vec postoji!\n\n");
                 free(temp);
             }
 
             else {
 
                 temp = AddElementIntoTree(X,S);
-                printf("Element %d je dodan u stablo!\n", X);
+                printf("Element %d je dodan u stablo!\n\n", X);
             }
         }
 
@@ -129,11 +127,11 @@ int Menu(int numb, Position S) {
             temp = DeleteElement(X,S);
 
             if(temp != NULL)
-                printf("Emlement %d je izbrisan iz stabla!\n", X);
+                printf("Emlement %d je izbrisan iz stabla!\n\n", X);
         }
 
         else if(key != 0)
-            printf("Nesipravan unos! Pokusajte ponovno!\n");
+            printf("Nesipravan unos! Pokusajte ponovno!\n\n");
 
     }
 
