@@ -19,6 +19,7 @@ Position AddElementIntoTree(int X, Position S);                 //Dodaje element
 int PrintIrorder(Position S);                                   //Inorder ispis
 int PrintPostorder(Position S);                                 //Postorder ispis
 int PrintPreorder(Position S);                                  //Preorder ispis
+int PriotLevelOrder(Position S);                                //Njega nisam znao napraviti
 Position DeleteElement(int X, Position S);                      //Brise elemant iz stabla
 Position FindMin(Position S);                                   //Trazi minimum
 int AddRootElement(int X, Position S);                          //Dodaje "korjen" stabla
