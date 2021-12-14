@@ -125,10 +125,22 @@ int Menu(int numb, Position S) {
             printf("Unesite element za brisanje:\n");
             scanf("%d", &X);
 
-            temp = DeleteElement(X,S);
+            temp = FindElement(X,S);
 
-            if(temp != NULL)
-                printf("Emlement %d je izbrisan iz stabla!\n\n", X);
+            if(temp == NULL) {
+
+                printf("Elementa nema unutar stabla!\n");
+                free(temp);
+            }
+
+            else {
+
+                temp = DeleteElement(X,S);
+
+                if(temp != NULL)
+                    printf("Emlement %d je izbrisan iz stabla!\n\n", X);
+            }
+
         }
 
         else if(key != 0)
@@ -182,6 +194,10 @@ Position AddElementIntoTree(int X, Position S) {
     if(S == NULL) {
 
         S = (Position)malloc(sizeof(Stablo));
+
+        if(!S) 
+            return NULL;
+
         S->Number = X;
         S->Left = NULL;
         S->Right = NULL;
