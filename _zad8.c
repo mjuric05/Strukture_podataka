@@ -33,6 +33,7 @@ int main() {
     root.Number = AddRootElement(numb,&root);
 
     numb = Menu(numb, &root);
+	
  
     if(numb == 7) {
 
