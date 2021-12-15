@@ -16,10 +16,10 @@ int Menu(int numb, Position S);                                 //Jednostavni me
 Position CreateEmpty(Position S);                               //Kreira na pocetku jednostavno prazno stablo
 Position FindElement(int keyVal, Position S);                   //Funkcija za trazenje elemenata
 Position AddElementIntoTree(int X, Position S);                 //Dodaje element u stablo
-int PrintIrorder(Position S);                                   //Inorder ispis
+int PrintIrorder(Position S);                                   //Inorder ispis			
 int PrintPostorder(Position S);                                 //Postorder ispis
 int PrintPreorder(Position S);                                  //Preorder ispis
-int PriotLevelOrder(Position S);                                //Njega nisam znao napraviti
+int printLevelOrder(Position S);				//Njega nisam znao napraviti
 Position DeleteElement(int X, Position S);                      //Brise elemant iz stabla
 Position FindMin(Position S);                                   //Trazi minimum
 int AddRootElement(int X, Position S);                          //Dodaje "korjen" stabla
@@ -33,6 +33,7 @@ int main() {
     root.Number = AddRootElement(numb,&root);
 
     numb = Menu(numb, &root);
+	
  
     if(numb == 7) {
 
@@ -194,10 +195,6 @@ Position AddElementIntoTree(int X, Position S) {
     if(S == NULL) {
 
         S = (Position)malloc(sizeof(Stablo));
-
-        if(!S) 
-            return NULL;
-
         S->Number = X;
         S->Left = NULL;
         S->Right = NULL;
@@ -300,3 +297,4 @@ int AddRootElement(int X, Position S) {
 
     return X;
 }
+
