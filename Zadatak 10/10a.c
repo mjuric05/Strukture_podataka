@@ -9,7 +9,7 @@ typedef struct _Stablo* Pos;
 typedef struct _Stablo {
 
     char CityName[MAX];
-    int PopleNumb;
+    int PeopleNumb;
     Pos Left;
     Pos Right;
 }Stablo;
@@ -32,7 +32,8 @@ Pos CreateTreeElement(Pos S, char CityName[], int Population);                  
 Pos Insert1(Position P, int X, char CityName[], Pos S);                                     //Unos elemenata u stablo
 Position FindStateByName(char State[], Position S);                                         //Trazimo drzavu prema imenu tj. pretrazivamo vezanu listu drzava
 Pos FindCityByName(char City[], Pos S);                                                     //Trazimo grad prema imenu tj. pretrazivamo binarno stablo
-Position InsertIntoList(Position P, Position S);
+int InsertIntoList(Position P, Position S);                                                 //Unosi u vezanu listu drzave prema imenu
+Pos CreateRoot();                                                                           //Kreira root stabla 
 
 int main() {
 
@@ -45,7 +46,7 @@ int main() {
     root = (Pos)malloc(sizeof(Stablo));
 
     strcpy(root->CityName, "0");
-    root->PopleNumb = 0;
+    root->PeopleNumb = 0;
     root->Left = NULL;
     root->Right = NULL;
 
@@ -170,7 +171,9 @@ char* InputFileName(Position S) {
 
         NewElement = CreateListElement(StateName);
 
-        current = InsertIntoList(S, NewElement);
+        NewElement->Next1 = CreateRoot();
+
+        InsertIntoList(S, NewElement);
         
         printf("Additional file: %s\n",NewFileName);
 
@@ -178,7 +181,7 @@ char* InputFileName(Position S) {
 
         AdditionalFileCretaor(S, NewFileName);
 
-        PrintInorder(S->Next1);
+        PrintInorder(NewElement->Next1);
 
         puts("");
     }
@@ -193,15 +196,19 @@ char* InputFileName(Position S) {
 
         NewElement = CreateListElement(StateName);
 
-        current = InsertIntoList(S, NewElement);
+        
+
+        InsertIntoList(S, NewElement);
+
+        NewElement->Next1 = CreateRoot();
 
         printf("Additional file: %s\n",NewFileName);
 
         printf("Gradovi za drzavu %s:\n\n", StateName);
 
-        AdditionalFileCretaor(current, NewFileName);
+        AdditionalFileCretaor(NewElement, NewFileName);
 
-        PrintInorder(S->Next1);
+        PrintInorder(NewElement->Next1);
 
         puts("");
     }
@@ -215,15 +222,19 @@ char* InputFileName(Position S) {
 
         NewElement = CreateListElement(StateName);
 
-        current = InsertIntoList(S, NewElement);
+        
+
+        InsertIntoList(S, NewElement);
+
+        NewElement->Next1 = CreateRoot();
 
         printf("Additional file: %s\n",NewFileName);
 
         printf("Gradovi za drzavu %s:\n\n", StateName);
 
-        AdditionalFileCretaor(current, NewFileName);
+        AdditionalFileCretaor(NewElement, NewFileName);
 
-        PrintInorder(S->Next1);
+        PrintInorder(NewElement->Next1);
 
         puts("");
     }
@@ -236,15 +247,19 @@ char* InputFileName(Position S) {
 
         NewElement = CreateListElement(StateName);
 
-       current = InsertIntoList(S, NewElement);
+        
+
+        InsertIntoList(S, NewElement);
+
+        NewElement->Next1 = CreateRoot();
 
         printf("Additional file: %s\n",NewFileName);
 
         printf("Gradovi za drzavu %s:\n\n", StateName);
 
-        AdditionalFileCretaor(current, NewFileName);
+        AdditionalFileCretaor(NewElement, NewFileName);
 
-        PrintInorder(S->Next1);
+        PrintInorder(NewElement->Next1);
 
         puts("");
     }
@@ -255,17 +270,19 @@ char* InputFileName(Position S) {
         _buffer5 += cnt;
         printf("State Name: %s\n",StateName);
 
-        NewElement = CreateListElement(StateName);
+        NewElement = CreateListElement(StateName);       
 
-        current = InsertIntoList(S, NewElement);
+        InsertIntoList(S, NewElement);
+
+        NewElement->Next1 = CreateRoot();
 
         printf("Additional file: %s\n",NewFileName);
 
         printf("Gradovi za drzavu %s:\n\n", StateName);
 
-        AdditionalFileCretaor(current, NewFileName);
+        AdditionalFileCretaor(NewElement, NewFileName);
 
-        PrintInorder(S->Next1);
+        PrintInorder(NewElement->Next1);
 
         puts("");
     }
@@ -285,7 +302,10 @@ int PrintInorder(Pos S) {
         return 0;
 
     PrintInorder(S->Left);
-    printf("Grad: %s\nBroj stanovnika: %d\n", S->CityName, S->PopleNumb);
+
+    if(S->PeopleNumb != 0) 
+        printf("Grad: %s\nBroj stanovnika: %d\n", S->CityName, S->PeopleNumb);                      //if sluzi da se ne ispise root
+
     PrintInorder(S->Right);
 
     return 0;
@@ -311,7 +331,7 @@ Position CreateListElement(char Name[]) {
     return q;
 }
 
-Position InsertIntoList(Position P, Position S) {
+int InsertIntoList(Position P, Position S) {
 
     if(P->Next == NULL) {
 
@@ -330,7 +350,7 @@ Position InsertIntoList(Position P, Position S) {
         S->Next1 = NULL;
     }
 
-    return S;
+    return 0;
 }
 
 int PrintList(Position P) {
@@ -437,6 +457,8 @@ int AdditionalFileCretaor(Position S, char NewFileName[]) {
         sscanf(_buffer1, " %s %d %n", &Name, &PNumb, &cnt);
         _buffer1 += cnt;
 
+        NewElement = CreateRoot();
+
         NewElement = Insert1(S, PNumb, Name, S->Next1);
     }
 
@@ -444,6 +466,8 @@ int AdditionalFileCretaor(Position S, char NewFileName[]) {
 
         sscanf(_buffer2, " %s %d %n", &Name, &PNumb, &cnt);
         _buffer2 += cnt;
+
+        NewElement = CreateRoot();
 
         NewElement = Insert1(S, PNumb, Name, S->Next1);
     }
@@ -453,6 +477,8 @@ int AdditionalFileCretaor(Position S, char NewFileName[]) {
         sscanf(_buffer3, " %s %d %n", &Name, &PNumb, &cnt);
         _buffer3 += cnt;
 
+        NewElement = CreateRoot();
+
         NewElement = Insert1(S, PNumb, Name, S->Next1);
     }
 
@@ -460,6 +486,8 @@ int AdditionalFileCretaor(Position S, char NewFileName[]) {
 
         sscanf(_buffer4, " %s %d %n", &Name, &PNumb, &cnt);
         _buffer4 += cnt;
+
+        NewElement = CreateRoot();
 
         NewElement = Insert1(S, PNumb, Name, S->Next1);
     }
@@ -474,13 +502,13 @@ Pos CreateTreeElement(Pos S,char CityName[], int Population) {
     if(S == NULL) {
 
         S = (Pos)malloc(sizeof(Stablo));
-        S->PopleNumb = Population;
+        S->PeopleNumb = Population;
         strcpy(S->CityName, CityName);
         S->Left = NULL;
         S->Right = NULL;
     }
 
-    else if(S->PopleNumb > Population)
+    else if(S->PeopleNumb > Population)
         S->Left = CreateTreeElement(S->Left,CityName, Population);
     
 
@@ -498,13 +526,13 @@ Pos Insert1(Position P, int X, char CityName[], Pos S) {
     if(S == NULL) {
 
         S = (Pos)malloc(sizeof(Stablo));
-        S->PopleNumb = X;
-        strcpy(S->CityName,CityName);
+        S->PeopleNumb = X;
+        strcpy(S->CityName, CityName);
         S->Left = NULL;
         S->Right = NULL;
     }
 
-    else if(S->PopleNumb >= X)
+    else if(S->PeopleNumb >= X)
         S->Left = CreateTreeElement(S->Left, CityName, X);
     
     else
@@ -546,14 +574,18 @@ int Menu(Position S) {
 
             else if(temp1 != NULL) {
 
-                printf("Drzava koju ste unjeli je: %s\n", temp1->StateName);
+                printf("Drzava koju ste unjeli je: %s\n", temp1->Next->StateName);
+
+                printf("Gradovi drzave su:\n");
+                PrintInorder(temp1->Next->Next1);
+
                 printf("Unesite grad: ");
                 scanf(" %s", &City);
                 puts("");
 
                 current = temp1->Next1;
 
-                temp = FindCityByName(City, current);
+                temp = FindCityByName(City, temp1->Next->Next1);
 
                 if(temp == NULL)
                     printf("Taj grad ne postoji!\n");
@@ -561,7 +593,7 @@ int Menu(Position S) {
 
                 else {
 
-                    printf("Grad: %s , Populacija: %d", temp->CityName, temp->PopleNumb);
+                    printf("Grad: %s , Populacija: %d\n", temp->CityName, temp->PeopleNumb);
                 }
             }
 
@@ -581,7 +613,7 @@ int Menu(Position S) {
 
 Position FindStateByName(char State[], Position S) {
 
-    while(S->Next != NULL && (strcmp(S->Next->StateName, State) == 0) )
+    while(S->Next != NULL && (strcmp(S->Next->StateName, State) < 0) )
         S = S->Next;
 
     if(S == NULL)
@@ -593,9 +625,6 @@ Position FindStateByName(char State[], Position S) {
 
 Pos FindCityByName(char City[], Pos S) {
 
-    int i = 0;
-
-    for(i = 0; i < 1; i++) {
 
         if(S == NULL)
             return NULL;
@@ -608,7 +637,21 @@ Pos FindCityByName(char City[], Pos S) {
 
         else    
             return S;
-    }
+    
 
     return S;
+}
+
+Pos CreateRoot () {
+
+    Pos q = NULL;
+
+    q = (Pos)malloc(sizeof(Stablo));
+
+    strcpy(q->CityName, "");
+    q->Left = NULL;
+    q->Right = NULL;
+    q->PeopleNumb = 0;
+
+    return q;
 }
