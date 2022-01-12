@@ -601,9 +601,14 @@ int Menu(Pos S) {
             if(temp1 == NULL)
                 printf("Drzava koju ste unnjeli ne postoji!\n");
 
+
             else if(temp1 != NULL) {
 
                 printf("Drzava koju ste unjeli je: %s\n", temp1->StateName);
+                printf("Gradovi unesene drzave su:\n");
+
+                PrintList(temp1->Next1);
+
                 printf("Unesite grad: ");
                 scanf(" %s", &City);
                 puts("");
