@@ -41,7 +41,8 @@ position_tree insertIntoTree(position_tree root, char cityName[], int population
 position_tree creteTreeElement(char cityName[], int peopleNumb);                                        //radimo elemnt stabla sa imenom i brojem stanovnika
 int printInorder(position_tree root);                                                                   //inorder ispis stabla u kojem se nalaze gradovi i brojs stanovnika
 int readFromAdditionalFile(position_list head, char additionalFile[]);                                  //cita gradove iz filea sa imenom grada i brojem stanovnika
-position_list findStateByName(hashTable hashArray[], char stateName[]);                                 //pretrazujemo hash tablicu i vezanu listu i trazimo drzavu po imenu                                                    
+position_list findStateByName(hashTable hashArray[], char stateName[]);                                 //pretrazujemo hash tablicu i vezanu listu i trazimo drzavu po imenu     
+/*napravio pretrazivanje gradova po imenu, kasnije skuzio da je trebalo po br. st*/
 position_tree findCityByName(position_tree current, char cityName[]);                                   //pretrazujemo stablo i trazimo postoji li grad sa trazenim unesenim imenom
 int Menu(hashTable hashArray[]);                                                                        //jednostavni menu za pretrazivanje
 
